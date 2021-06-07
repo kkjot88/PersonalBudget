@@ -1,14 +1,15 @@
 #ifndef EXPENSEMANAGER_H
 #define EXPENSEMANAGER_H
 
-#include <vector>
 #include "Expense.h"
+#include "DateManager.h"
 
 using namespace std;
 
-class ExpenseManager {
-	const int SIGNED_IN_USER_ID;
+class ExpenseManager {	
 	vector<Expense> expenses;
+	DateManager dateManager;
+	const int SIGNED_IN_USER_ID;
 
 public:
 	ExpenseManager(string nameOfExpenseFileXML, int signedInUserId);

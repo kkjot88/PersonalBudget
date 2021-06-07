@@ -1,18 +1,30 @@
 #ifndef INCOMEMANAGER_H
 #define INCOMEMANAGER_H
 
-#include <vector>
 #include "Income.h"
+#include "DateManager.h"
+
 
 using namespace std;
 
 class IncomeManager {
-	const int SIGNED_IN_USER_ID;
 	vector<Income> incomes;
+	DateManager dateManager;
+	const int SIGNED_IN_USER_ID;
+
+	Date askForIncomeDate();
+	Income askForIncomeData();
+	void addIncomeToFile();
+	void showIncomes();
 	
 public:
 	IncomeManager(string nameOfIncomeFileXML, int signedInUserId);
 
+	void loadCurrentUserIncomes();
+	void addIncome();
+	void showCurrentMonthIncomes();
+	void showPreviousMonthIncomes();
+	void showGivenPeriodIncomes();
 };
 
 #endif
