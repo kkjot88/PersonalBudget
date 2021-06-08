@@ -61,3 +61,65 @@ double GeneralMethods::readDouble() {
 
     return correctDouble;    
 }
+
+string GeneralMethods::readDate() {
+    string entry = "";
+    
+    bool isDateCorrect = false;
+
+    while (!isDateCorrect) {
+        getline(cin, entry);
+
+        int entryLength = entry.length();
+        if (entryLength != 10) {
+            cout << "Wrong format." << endl;
+            cout << "Try again: ";
+            continue;
+        }
+
+        for (int i = 0; i < 10; i++) {
+            if ((entry[i] >= 48 && entry[i] <= 57) || entry[i] == 45) {
+                if (charToInt(entry[0]) < 2) {
+                    cout << "Please enter date in year 2000" << endl;
+                    cout << "Try again: ";
+                    break;
+                }
+                else {
+                    if (entry[4] != 45) {
+                        cout << "Wrong format." << endl;
+                        cout << "Try again: ";
+                        break;
+                    }
+                    else {
+                        if (entry[7] != 45) {
+                            cout << "Wrong format." << endl;
+                            cout << "Try again: ";
+                            break;
+                        }
+                        else {
+                            isDateCorrect = true;
+                        }
+                    }
+
+                }
+            }
+            else {
+                cout << "Wrong format." << endl;
+                cout << "Try again: ";
+                break;
+            }
+        }
+    }    
+
+    return entry;
+}
+
+int GeneralMethods::charToInt(char character) {
+    stringstream ss;
+    int integer = 0;
+
+    ss << character;
+    ss >> integer;
+
+    return integer;
+}

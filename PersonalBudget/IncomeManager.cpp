@@ -18,7 +18,7 @@ Date IncomeManager::askForIncomeDate() {
 		}
 		else if ((int)userInput == '2') {
 			cout << endl << "Enter date: ";
-			string newDateString = GeneralMethods::readLine();	
+			string newDateString = GeneralMethods::readDate();	
 			newDate.setDate(newDateString);
 			isInputCorrect = true;
 		}

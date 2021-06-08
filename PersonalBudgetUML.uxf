@@ -68,8 +68,7 @@
     </coordinates>
     <panel_attributes>GeneralMethods
 --
-+ checkAmountFormat() : bool
-+ fixAmountFormat() : double</panel_attributes>
++ readDouble() : double</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

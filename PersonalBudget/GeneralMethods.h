@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -12,6 +13,8 @@ public:
 	static string readLine();
 	static char readChar();
 	static double readDouble();
+	static string readDate();
+	static int charToInt(char character);
 
 };
 
