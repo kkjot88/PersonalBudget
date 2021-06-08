@@ -113,6 +113,7 @@
 + showGivenPeriodIncomes() : void
 - askForIncomeDate() : Date
 - askForIncomeData() : Income
+- generateNewIncomeId() : int
 - addIncomeToFile() : void
 - showIncomes() : void</panel_attributes>
     <additional_attributes/>
@@ -207,6 +208,7 @@
 + showGivenPeriodExpenses() : void
 - askForExpenseDate() : Date
 - askForExpenseData() : Income
+- generateNewExpenseId() : int
 - addExpenseToFile() : void
 - showExpenses() : void</panel_attributes>
     <additional_attributes/>

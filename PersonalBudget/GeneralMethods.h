@@ -11,6 +11,7 @@ class GeneralMethods {
 public:
 	static string readLine();
 	static char readChar();
+	static double readDouble();
 
 };
 

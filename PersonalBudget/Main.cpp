@@ -6,11 +6,11 @@ using namespace std;
 
 int main()
 {
-	PersonalBudget personalBudget("x", "x", "x");
+	IncomeManager incomeManager("x",3);
 
-	personalBudget.userSignUp();
-	
-	personalBudget.userSignIn();
+	incomeManager.addIncome();
 
-	personalBudget.showAllUsers();
+
 }
+	
+	
