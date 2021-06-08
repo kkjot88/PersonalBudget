@@ -12,3 +12,11 @@ vector<Income> DateManager::sortByDate(vector<Income> incomes) {
 vector<Expense> DateManager::sortByDate(vector<Expense> expenses) {
     return vector<Expense>();
 }
+
+bool DateManager::checkDate(string date) {
+
+
+
+
+    return false;
+}

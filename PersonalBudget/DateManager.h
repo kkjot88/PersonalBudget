@@ -14,6 +14,7 @@ public:
 	Date getCurrentDate();
 	vector<Income> sortByDate(vector<Income> incomes);
 	vector<Expense> sortByDate(vector<Expense> expenses);
+	bool checkDate(string date);
 };
 
 #endif

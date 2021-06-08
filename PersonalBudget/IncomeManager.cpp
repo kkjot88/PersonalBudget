@@ -1,33 +1,34 @@
 #include "IncomeManager.h"
 
 Date IncomeManager::askForIncomeDate() {	
-	Date newDate;
-
 	cout << "1. Today" << endl;
 	cout << "2. Different date" << endl << endl;
 	cout << "Your input: ";
-	bool isInputCorrect = false;
 
-	while (!isInputCorrect) {
-		char userInput = GeneralMethods::readChar();
+	char userInput = GeneralMethods::readChar();	
 
+	while (true) {
 		if ((int)userInput == '1') {
 			cout << endl << "Current date used." << endl;
-			newDate.setDate();
-			isInputCorrect = true;
+			Date newDate;
+			return newDate;
 		}
-		else if ((int)userInput == '2') {
+		else if ((int)userInput == '2') {		
 			cout << endl << "Enter date: ";
+
 			string newDateString = GeneralMethods::readDate();	
-			newDate.setDate(newDateString);
-			isInputCorrect = true;
+			Date newDate(newDateString);			
+
+			if (!newDate.check()) {
+				cout << "Wrong date. Try again." << endl;
+				continue;
+			}
+			return newDate;
 		}
 		else {
 			cout << "Wrong input, try again" << endl;
 		}
 	}
-
-	return newDate;
 }
 
 Income IncomeManager::askForIncomeData(Date newDate) {
@@ -45,7 +46,7 @@ Income IncomeManager::askForIncomeData(Date newDate) {
 	double amount = GeneralMethods::readDouble();
 	newIncome.setAmount(amount);
 
-	return Income();
+	return newIncome;
 }
 
 int IncomeManager::generateNewIncomeId() {

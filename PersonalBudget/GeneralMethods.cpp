@@ -78,39 +78,27 @@ string GeneralMethods::readDate() {
         }
 
         for (int i = 0; i < 10; i++) {
-            if ((entry[i] >= 48 && entry[i] <= 57) || entry[i] == 45) {
-                if (charToInt(entry[0]) < 2) {
-                    cout << "Please enter date in year 2000" << endl;
-                    cout << "Try again: ";
-                    break;
-                }
-                else {
-                    if (entry[4] != 45) {
-                        cout << "Wrong format." << endl;
-                        cout << "Try again: ";
-                        break;
-                    }
-                    else {
-                        if (entry[7] != 45) {
-                            cout << "Wrong format." << endl;
-                            cout << "Try again: ";
-                            break;
-                        }
-                        else {
-                            isDateCorrect = true;
-                        }
-                    }
-
-                }
-            }
-            else {
+            if (!((entry[i] >= 48 && entry[i] <= 57) || entry[i] == 45)) {
                 cout << "Wrong format." << endl;
                 cout << "Try again: ";
-                break;
+                continue;
             }
         }
-    }    
+        
+        if (entry[4] != 45) {
+            cout << "Wrong format." << endl;
+            cout << "Try again: ";
+            continue;
+        }
 
+        if (entry[7] != 45) {
+            cout << "Wrong format." << endl;
+            cout << "Try again: ";
+            continue;
+        }
+
+        isDateCorrect = true;        
+    }    
     return entry;
 }
 
