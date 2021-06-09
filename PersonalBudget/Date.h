@@ -12,12 +12,18 @@ class Date {
 	int year, month, day;
 	string date;
 
+	map<int, int> allMonthLength;
+
 	string getCurrentDate();
+	string combineIntoDate(int _year, int _month, int _day);
 	string monthIntToString(int _month);
 	string dayIntToString(int _day);
 	void extractYear();
 	void extractMonth();
 	void extractDay();
+	void changeYearInDate(int newYear);
+	void changeMonthInDate(int newMonth);
+	void changeDayInDate(int newDay);
 	bool checkYear();
 	bool checkMonth();
 	bool checkDay();
@@ -31,10 +37,20 @@ public:
 	int getDay();
 	string getDate();
 	
+	void setYear(int newYear);
+	void setMonth(int newMonth);
+	void setDay(int newDay);
 	void setDate();
 	void setDate(string newDate);
 
 	bool check();
+	int getNumberOfDaysInMonth();
+
+	bool operator==(Date secondDate);
+	bool operator>(Date secondDate);
+	bool operator<(Date secondDate);
+	bool operator>=(Date secondDate);
+	bool operator<=(Date secondDate);
 };
 
 #endif

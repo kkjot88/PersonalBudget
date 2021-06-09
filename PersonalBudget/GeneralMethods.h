@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include "Date.h"
 
 using namespace std;
 
@@ -13,7 +14,7 @@ public:
 	static string readLine();
 	static char readChar();
 	static double readDouble();
-	static string readDate();
+	static Date readDate();
 	static int charToInt(char character);
 
 };

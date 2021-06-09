@@ -62,12 +62,10 @@ double GeneralMethods::readDouble() {
     return correctDouble;    
 }
 
-string GeneralMethods::readDate() {
-    string entry = "";
-    
-    bool isDateCorrect = false;
+Date GeneralMethods::readDate() {
+    string entry = "";    
 
-    while (!isDateCorrect) {
+    while (true) {
         getline(cin, entry);
 
         int entryLength = entry.length();
@@ -97,9 +95,9 @@ string GeneralMethods::readDate() {
             continue;
         }
 
-        isDateCorrect = true;        
-    }    
-    return entry;
+        Date inputDate(entry);
+        return inputDate;
+    }        
 }
 
 int GeneralMethods::charToInt(char character) {

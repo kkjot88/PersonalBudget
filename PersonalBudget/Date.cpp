@@ -4,12 +4,20 @@ Date::Date() :date(getCurrentDate()) {
     extractYear();
     extractMonth();
     extractDay();
+    if (year % 4 != 0)
+        allMonthLength = { {1,31},{2,28},{3,31},{4,30},{5,31},{6,30},{7,31},{8,31},{9,30},{10,31},{11,30},{12,31} };
+    else
+        allMonthLength = { {1,31},{2,29},{3,31},{4,30},{5,31},{6,30},{7,31},{8,31},{9,30},{10,31},{11,30},{12,31} };
 }
 
 Date::Date(string newDate) :date(newDate) {
     extractYear();
     extractMonth();
     extractDay();
+    if (year % 4 != 0)
+        allMonthLength = { {1,31},{2,28},{3,31},{4,30},{5,31},{6,30},{7,31},{8,31},{9,30},{10,31},{11,30},{12,31} };
+    else
+        allMonthLength = { {1,31},{2,29},{3,31},{4,30},{5,31},{6,30},{7,31},{8,31},{9,30},{10,31},{11,30},{12,31} };
 }
 
 string Date::getCurrentDate() {
@@ -21,9 +29,14 @@ string Date::getCurrentDate() {
     int currentMonth = currentTime.tm_mon + 1;
     int currentDay = currentTime.tm_mday;    
 
-    string currentDate = to_string(currentYear) + "-" + monthIntToString(currentMonth) + "-" + dayIntToString(currentDay);
+    string currentDate = combineIntoDate(currentYear, currentMonth, currentDay);
 
     return currentDate;
+}
+
+string Date::combineIntoDate(int _year, int _month, int _day) {
+    string combinedDate = to_string(_year) + "-" + monthIntToString(_month) + "-" + dayIntToString(_day);
+    return combinedDate;
 }
 
 string Date::monthIntToString(int _month) {
@@ -52,6 +65,24 @@ void Date::extractDay() {
     day = stoi(date.substr(8, 2));
 }
 
+void Date::changeYearInDate(int newYear) {
+    extractMonth();
+    extractDay();
+    date = combineIntoDate(newYear, month, day);
+}
+
+void Date::changeMonthInDate(int newMonth) {
+    extractYear();
+    extractDay();
+    date = combineIntoDate(year, newMonth, day);
+}
+
+void Date::changeDayInDate(int newDay) {
+    extractYear();
+    extractMonth();
+    date = combineIntoDate(year, month, newDay);
+}
+
 bool Date::checkYear() {
     if (year >= 2000) 
         return true;    
@@ -66,22 +97,8 @@ bool Date::checkMonth() {
         return false;
 }
 
-bool Date::checkDay() {    
-    map<int, int> allMonthLength;
-    if (year % 4 != 0) 
-        allMonthLength = { {1,31},{2,28},{3,31},{4,30},{5,31},{6,30},{7,31},{8,31},{9,30},{10,31},{11,30},{12,31} };
-    else 
-        allMonthLength = { {1,31},{2,29},{3,31},{4,30},{5,31},{6,30},{7,31},{8,31},{9,30},{10,31},{11,30},{12,31} };
-
-    int dayLimit;
-    map<int, int>::iterator it;
-
-    for (it = allMonthLength.begin(); it != allMonthLength.end(); it++) {
-        if (month == it->first) 
-            dayLimit = it->second;        
-    }
-
-    if (day > 0 && day <= dayLimit)
+bool Date::checkDay() {
+    if (day > 0 && day <= getNumberOfDaysInMonth())
         return true;
     else
         return false;
@@ -103,8 +120,23 @@ string Date::getDate() {
     return date;
 }
 
+void Date::setYear(int newYear) {
+    year = newYear;
+}
+
+void Date::setMonth(int newMonth) {
+    month = newMonth;
+}
+
+void Date::setDay(int newDay) {
+    day = newDay;
+}
+
 void Date::setDate() {
-    
+    date = getCurrentDate();
+    extractYear();
+    extractMonth();
+    extractDay();
 }
 
 void Date::setDate(string newDate) {
@@ -125,4 +157,86 @@ bool Date::check() {
         return false;
 
     return true;
+}
+
+int Date::getNumberOfDaysInMonth(){
+    return allMonthLength[month];
+}
+
+bool Date::operator==(Date secondDate) {
+    if (this->year == secondDate.year &&
+        this->month == secondDate.month &&
+        this->day == secondDate.day
+        )
+        return true;
+    else
+        return false;
+}
+
+bool Date::operator>(Date secondDate) {
+    if (this->year > secondDate.year)
+        return true;
+    else if (this->year < secondDate.year)
+        return false;
+
+    if (this->month > secondDate.month)
+        return true;
+    else if (this->month < secondDate.month)
+        return false;
+
+    if (this->day > secondDate.day)
+        return true;
+    else
+        return false;    
+}
+
+bool Date::operator<(Date secondDate) {
+    if (this->year < secondDate.year)
+        return true;
+    else if (this->year > secondDate.year)
+        return false;
+
+    if (this->month < secondDate.month)
+        return true;
+    else if (this->month > secondDate.month)
+        return false;
+
+    if (this->day < secondDate.day)
+        return true;
+    else
+        return false;
+}
+
+bool Date::operator>=(Date secondDate) {
+    if (this->year > secondDate.year)
+        return true;
+    else if (this->year < secondDate.year)
+        return false;
+
+    if (this->month > secondDate.month)
+        return true;
+    else if (this->month < secondDate.month)
+        return false;
+
+    if (this->day >= secondDate.day)
+        return true;
+    else
+        return false;
+}
+
+bool Date::operator<=(Date secondDate) {
+    if (this->year < secondDate.year)
+        return true;
+    else if (this->year > secondDate.year)
+        return false;
+
+    if (this->month < secondDate.month)
+        return true;
+    else if (this->month > secondDate.month)
+        return false;
+
+    if (this->day <= secondDate.day)
+        return true;
+    else
+        return false;
 }
