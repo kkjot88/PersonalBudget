@@ -65,20 +65,25 @@ int main()
 
 	IncomeManager incomeManager("x",1);
 
-	incomeManager.incomes.push_back(i1);
-	incomeManager.incomes.push_back(i2);
-	incomeManager.incomes.push_back(i3);
-	incomeManager.incomes.push_back(i4);
-	incomeManager.incomes.push_back(i5);
-	incomeManager.incomes.push_back(i6);
-	incomeManager.incomes.push_back(i7);
-	incomeManager.incomes.push_back(i8);
+	incomeManager.income.push_back(i1);
+	incomeManager.income.push_back(i2);
+	incomeManager.income.push_back(i3);
+	incomeManager.income.push_back(i4);
+	incomeManager.income.push_back(i5);
+	incomeManager.income.push_back(i6);
+	incomeManager.income.push_back(i7);
+	incomeManager.income.push_back(i8);
 
-	incomeManager.showCurrentMonthIncomesAndGetTotal();
+	incomeManager.showCurrentMonthIncomeAndGetTotal();
 
-	incomeManager.showPreviousMonthIncomesAndGetTotal();
+	//incomeManager.showPreviousMonthIncomeAndGetTotal();
 
+	Date b1("2001-01-01");
+	Date b2("2040-01-01");
 
+	//incomeManager.showGivenPeriodIncomeAndGetTotal();
+
+	//incomeManager.showIncomeForGivenPeriod(b1,b2);
 
 	/*
 	IncomeManager incomeManager("x",3);

@@ -20,10 +20,7 @@ class Date {
 	string dayIntToString(int _day);
 	void extractYear();
 	void extractMonth();
-	void extractDay();
-	void changeYearInDate(int newYear);
-	void changeMonthInDate(int newMonth);
-	void changeDayInDate(int newDay);
+	void extractDay();	
 	bool checkYear();
 	bool checkMonth();
 	bool checkDay();

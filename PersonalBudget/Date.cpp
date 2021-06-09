@@ -65,24 +65,6 @@ void Date::extractDay() {
     day = stoi(date.substr(8, 2));
 }
 
-void Date::changeYearInDate(int newYear) {
-    extractMonth();
-    extractDay();
-    date = combineIntoDate(newYear, month, day);
-}
-
-void Date::changeMonthInDate(int newMonth) {
-    extractYear();
-    extractDay();
-    date = combineIntoDate(year, newMonth, day);
-}
-
-void Date::changeDayInDate(int newDay) {
-    extractYear();
-    extractMonth();
-    date = combineIntoDate(year, month, newDay);
-}
-
 bool Date::checkYear() {
     if (year >= 2000) 
         return true;    
@@ -122,14 +104,23 @@ string Date::getDate() {
 
 void Date::setYear(int newYear) {
     year = newYear;
+    extractMonth();
+    extractDay();
+    date = combineIntoDate(newYear, month, day);
 }
 
 void Date::setMonth(int newMonth) {
+    extractYear();
     month = newMonth;
+    extractDay();
+    date = combineIntoDate(year, newMonth, day);
 }
 
 void Date::setDay(int newDay) {
+    extractYear();
+    extractMonth();
     day = newDay;
+    date = combineIntoDate(year, month, newDay);
 }
 
 void Date::setDate() {

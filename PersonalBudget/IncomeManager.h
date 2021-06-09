@@ -3,37 +3,38 @@
 
 #include <iostream>
 #include <algorithm>
+#include <vector>
 
 #include "Income.h"
-#include "DateManager.h"
 #include "GeneralMethods.h"
+#include "FileXML.h"
 
 
 using namespace std;
 
 class IncomeManager {
-	//vector<Income> incomes;
-	DateManager dateManager;
+	//vector<Income> income;
 	const int SIGNED_IN_USER_ID;
+	FileXML incomeFileXML;
 
 	Date askForIncomeDate();
 	Income askForIncomeData(Date newDate);
 	int generateNewIncomeId();
-	//void addIncomeToFile();
-	//void showIncomes();
+	void showOneIncome(Income singularIncome);
+	void showIncomeForGivenPeriod(vector<Income> givenPeriodIncome, Date startDate, Date endDate);
 	vector<Income> createVectorForGivenPeriod(Date startDate, Date endDate);
-	double countSumOfIncomesInVector(vector<Income> incomesToSum);
-	static bool compareIncomesByDates(Income firstIncome, Income secondIncome);
+	double countSumOfIncomeInVector(vector<Income> incomeToSum);
+	static bool compareIncomeByDates(Income firstIncome, Income secondIncome);
 	
 public:
-	vector<Income> incomes;
+	vector<Income> income;
 	IncomeManager(string nameOfIncomeFileXML, int signedInUserId);
 
-	//void loadCurrentUserIncomes();
+	//void loadCurrentUserIncome();
 	void addIncome();
-	double showCurrentMonthIncomesAndGetTotal();
-	double showPreviousMonthIncomesAndGetTotal();
-	double showGivenPeriodIncomesAndGetTotal();
+	double showCurrentMonthIncomeAndGetTotal();
+	double showPreviousMonthIncomeAndGetTotal();
+	double showGivenPeriodIncomeAndGetTotal();	
 };
 
 #endif

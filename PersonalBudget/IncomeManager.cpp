@@ -13,14 +13,8 @@ Date IncomeManager::askForIncomeDate() {
 			Date newDate;
 			return newDate;
 		}
-		else if ((int)userInput == '2') {		
-			cout << endl << "Enter date: ";
+		else if ((int)userInput == '2') {					
 			Date newDate = GeneralMethods::readDate();
-
-			if (!newDate.check()) {
-				cout << "Wrong date. Try again." << endl;
-				continue;
-			}
 			return newDate;
 		}
 		else {
@@ -48,33 +42,64 @@ Income IncomeManager::askForIncomeData(Date newDate) {
 }
 
 int IncomeManager::generateNewIncomeId() {
-	if (incomes.empty()) {
+	if (income.empty()) {
 		return 1;
 	}
 	else {
-		return incomes.back().getId() + 1;
+		return income.back().getId() + 1;
 	}
+}
+
+void IncomeManager::showOneIncome(Income singularIncome) {
+	cout << "Id: " << singularIncome.getId() << " | " << singularIncome.getDate().getDate() << " | Amount: " << singularIncome.getAmount() << endl;
+	cout << "                   | Description: " << singularIncome.getDescription() << endl;
+
+
+	/*
+	cout << "Id:                 " << income.getId() << endl;
+	cout << "Date:               " << income.getDate().getDate() << endl;
+	cout << "Description:        " << income.getDescription() << endl;
+	cout << "Amount:             " << income.getAmount() << endl;
+	cout << "-------------------------------------" << endl;
+	*/
+}
+
+void IncomeManager::showIncomeForGivenPeriod(vector<Income> givenPeriodIncome, Date startDate, Date endDate) {
+	system("cls");
+	if (!givenPeriodIncome.empty()) {
+		cout << "            >>> Income " << startDate.getDate() << "/" << endDate.getDate() << " <<<" << endl;
+		cout << "-------------------------------------------------------------" << endl;
+
+		for (vector<Income>::iterator itr = givenPeriodIncome.begin(); itr != givenPeriodIncome.end(); itr++)
+		{
+			showOneIncome(*itr);
+		}
+		cout << endl;
+	}
+	else {
+		cout << endl << "No income in given period " << endl;
+	}	
 }
 
 vector<Income> IncomeManager::createVectorForGivenPeriod(Date startDate, Date endDate) {
-	vector<Income> givenPeriodIncomes;
-	for (int i = 0; i < incomes.size(); i++) {
-		if (incomes[i].getDate() >= startDate && incomes[i].getDate() <= endDate) {
-			givenPeriodIncomes.push_back(incomes[i]);
+	vector<Income> givenPeriodIncome;
+	for (int i = 0; i < income.size(); i++) {
+		if (income[i].getDate() >= startDate && income[i].getDate() <= endDate) {
+			givenPeriodIncome.push_back(income[i]);
 		}
 	}
-	return givenPeriodIncomes;
+	return givenPeriodIncome;
 }
 
-double IncomeManager::countSumOfIncomesInVector(vector<Income> incomesToSum) {
+double IncomeManager::countSumOfIncomeInVector(vector<Income> incomeToSum) {
 	double total = 0.0;
-	for (int i = 0; i < incomesToSum.size(); i++) {
-		total += incomesToSum[i].getAmount();
+	for (int i = 0; i < incomeToSum.size(); i++) {
+		total += incomeToSum[i].getAmount();
 	}
 	return total;
 }
 
-bool IncomeManager::compareIncomesByDates(Income firstIncome, Income secondIncome) {
+bool IncomeManager::compareIncomeByDates(Income firstIncome, Income secondIncome) {
 	return (firstIncome.getDate() < secondIncome.getDate());
 }
 
@@ -85,7 +110,7 @@ IncomeManager::IncomeManager(
 	//incomeFileXML(nameOfIncomeFileXML),
 	SIGNED_IN_USER_ID(signedInUserId)
 {
-	//incomes = incomeFileXML.
+	//income = incomeFileXML.
 }
 
 void IncomeManager::addIncome() {
@@ -93,14 +118,15 @@ void IncomeManager::addIncome() {
 
 	Date incomeDate = askForIncomeDate();
 	newIncome = askForIncomeData(incomeDate);
-	incomes.push_back(newIncome);
+	income.push_back(newIncome);
 
+	incomeFileXML.addIncomeToFile();
 	//save to xml?
 
 	cout << "Income added successfully." << endl;
 }
 
-double IncomeManager::showCurrentMonthIncomesAndGetTotal(){
+double IncomeManager::showCurrentMonthIncomeAndGetTotal(){
 	Date firstDayOfCurrentMonth;
 	firstDayOfCurrentMonth.setDay(1);
 
@@ -108,16 +134,18 @@ double IncomeManager::showCurrentMonthIncomesAndGetTotal(){
 	int lastDayNumber = lastDayOfCurrentMonth.getNumberOfDaysInMonth();
 	lastDayOfCurrentMonth.setDay(lastDayNumber);
 
-	vector<Income> currentMonthIncomes;
-	currentMonthIncomes = createVectorForGivenPeriod(firstDayOfCurrentMonth,lastDayOfCurrentMonth);	
+	vector<Income> currentMonthIncome;
+	currentMonthIncome = createVectorForGivenPeriod(firstDayOfCurrentMonth,lastDayOfCurrentMonth);	
 
-	sort(currentMonthIncomes.begin(), currentMonthIncomes.end(), compareIncomesByDates);
+	sort(currentMonthIncome.begin(), currentMonthIncome.end(), compareIncomeByDates);
 
-	double total = countSumOfIncomesInVector(currentMonthIncomes);
+	showIncomeForGivenPeriod(currentMonthIncome,firstDayOfCurrentMonth,lastDayOfCurrentMonth);
+
+	double total = countSumOfIncomeInVector(currentMonthIncome);
 	return total;
 }
 
-double IncomeManager::showPreviousMonthIncomesAndGetTotal() {
+double IncomeManager::showPreviousMonthIncomeAndGetTotal() {
 	Date currentDate;
 	int previousMonthNumber = currentDate.getMonth() - 1;
 
@@ -130,24 +158,26 @@ double IncomeManager::showPreviousMonthIncomesAndGetTotal() {
 	int lastDayNumber = lastDayOfPreviousMonth.getNumberOfDaysInMonth();
 	lastDayOfPreviousMonth.setDay(lastDayNumber);;
 
-	vector<Income> previousMonthIncomes;
-	previousMonthIncomes = createVectorForGivenPeriod(firstDayOfPreviousMonth, lastDayOfPreviousMonth);
+	vector<Income> previousMonthIncome;
+	previousMonthIncome = createVectorForGivenPeriod(firstDayOfPreviousMonth, lastDayOfPreviousMonth);
 
-	sort(previousMonthIncomes.begin(), previousMonthIncomes.end(), compareIncomesByDates);
+	sort(previousMonthIncome.begin(), previousMonthIncome.end(), compareIncomeByDates);
 
-	double total = countSumOfIncomesInVector(previousMonthIncomes);
+	showIncomeForGivenPeriod(previousMonthIncome, firstDayOfPreviousMonth, lastDayOfPreviousMonth);
+
+	double total = countSumOfIncomeInVector(previousMonthIncome);
 	return total;
 }
 
-double IncomeManager::showGivenPeriodIncomesAndGetTotal() {
+double IncomeManager::showGivenPeriodIncomeAndGetTotal() {
 	Date firstDate = GeneralMethods::readDate();
 	Date secondDate = GeneralMethods::readDate();
 
-	vector<Income> givenPeriodIncomes;
-	givenPeriodIncomes = createVectorForGivenPeriod(firstDate, secondDate);
+	vector<Income> givenPeriodIncome;
+	givenPeriodIncome = createVectorForGivenPeriod(firstDate, secondDate);
 
-	sort(givenPeriodIncomes.begin(), givenPeriodIncomes.end(), compareIncomesByDates);
+	sort(givenPeriodIncome.begin(), givenPeriodIncome.end(), compareIncomeByDates);
 
-	double total = countSumOfIncomesInVector(givenPeriodIncomes);
+	double total = countSumOfIncomeInVector(givenPeriodIncome);
 	return total;
 }

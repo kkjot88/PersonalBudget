@@ -64,6 +64,7 @@ double GeneralMethods::readDouble() {
 
 Date GeneralMethods::readDate() {
     string entry = "";    
+    cout << "Enter date: ";
 
     while (true) {
         getline(cin, entry);
@@ -96,6 +97,12 @@ Date GeneralMethods::readDate() {
         }
 
         Date inputDate(entry);
+        if (!inputDate.check()) {
+            cout << "Wrong date, must be later than 1999-12-31." << endl;
+            cout << "Try again: ";
+            continue;
+        }
+
         return inputDate;
     }        
 }
