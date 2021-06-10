@@ -1,16 +1,15 @@
 #include "FileXML.h"
 
-FileXML::FileXML(string fileName)
-	:FILE_NAME(fileName)
-{
+bool FileXML::fileExists() {
+	ifstream f(FILE_NAME);
+	return f.good();
 }
 
-void FileXML::addIncomeToFile(Income singularIncome) {
-
-
-
-
-
-
-
+FileXML::FileXML(string fileName)
+	:FILE_NAME(fileName.c_str())
+{
+	if (fileExists())
+		xml.Load(FILE_NAME);
+	else
+		xml.Save(FILE_NAME);
 }

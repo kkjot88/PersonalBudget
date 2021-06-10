@@ -2,12 +2,12 @@
 
 IncomeManager::IncomeManager(
 	string nameOfIncomeFileXML,
-	int signedInUserId)
-	:
+	int signedInUserId
+) :
 	incomeFileXML(nameOfIncomeFileXML),
 	SIGNED_IN_USER_ID(signedInUserId)
 {
-	//income = incomeFileXML.
+	//incomes = incomeFileXML.
 }
 
 Date IncomeManager::askForIncomeDate() {	
@@ -120,7 +120,7 @@ void IncomeManager::addIncome() {
 	newIncome = askForIncomeData(incomeDate);
 	income.push_back(newIncome);
 
-	incomeFileXML.addIncomeToFile();
+	//incomeFileXML.addIncomeToFile();
 	//save to xml?
 
 	cout << "Income added successfully." << endl;
