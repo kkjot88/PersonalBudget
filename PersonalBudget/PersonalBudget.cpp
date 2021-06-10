@@ -55,3 +55,21 @@ void PersonalBudget::userSignUp() {
 bool PersonalBudget::isUserSignedIn() {
 	return userManager.isUserSignedIn();
 }
+
+void PersonalBudget::addIncome() {
+	if (userManager.isUserSignedIn())
+		incomeManager->addIncome();
+	else
+		cout << "Not signed in" << endl;
+}
+
+void PersonalBudget::showCurrentMonthBalance() {
+	double total = incomeManager->showCurrentMonthIncomesAndGetTotal();
+	cout << total << endl;
+
+}
+
+void PersonalBudget::showPreviousMonthBalance() {
+	double total = incomeManager->showPreviousMonthIncomesAndGetTotal();
+	cout << total << endl;
+}

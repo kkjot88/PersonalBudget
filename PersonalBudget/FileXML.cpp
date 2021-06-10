@@ -8,8 +8,9 @@ bool FileXML::fileExists() {
 FileXML::FileXML(string fileName)
 	:FILE_NAME(fileName.c_str())
 {
-	if (fileExists())
-		xml.Load(FILE_NAME);
-	else
-		xml.Save(FILE_NAME);
+	
+}
+
+CString FileXML::getFileName() {
+	return FILE_NAME;
 }

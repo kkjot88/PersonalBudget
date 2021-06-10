@@ -4,6 +4,9 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <cstring>
+#include <afx.h>
+
 #include "Date.h"
 
 using namespace std;
@@ -16,6 +19,7 @@ public:
 	static double readDouble();
 	static Date readDate();
 	static int charToInt(char character);
+	static string CStringToString(CString cstring);
 
 };
 

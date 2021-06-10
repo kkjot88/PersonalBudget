@@ -150,6 +150,7 @@
     <ClCompile Include="FileXML.cpp" />
     <ClCompile Include="GeneralMethods.cpp" />
     <ClCompile Include="Income.cpp" />
+    <ClCompile Include="IncomesFileXML.cpp" />
     <ClCompile Include="IncomeManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Markup.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="FileXML.h" />
     <ClInclude Include="GeneralMethods.h" />
     <ClInclude Include="Income.h" />
+    <ClInclude Include="IncomesFileXML.h" />
     <ClInclude Include="IncomeManager.h" />
     <ClInclude Include="Markup.h" />
     <ClInclude Include="PersonalBudget.h" />

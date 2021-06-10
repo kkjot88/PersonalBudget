@@ -28,6 +28,11 @@ public:
 	void userSignUp();
 	bool isUserSignedIn();
 
+	void addIncome();
+	//void addExpense();
+	void showCurrentMonthBalance();
+	void showPreviousMonthBalance();
+
 };
 
 #endif

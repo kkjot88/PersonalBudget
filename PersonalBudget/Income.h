@@ -2,6 +2,7 @@
 #define INCOME_H
 
 #include <string>
+
 #include "Date.h"
 
 using namespace std;
@@ -10,13 +11,16 @@ class Income {
 	int id, userId;
 	Date date;
 	string description;
-	int amount;
+	double amount;
 public:
+	Income();
+	Income(int _id, int _userId, Date _date, string _description, double _amount);
+
 	int getId();
 	int getUserId();
 	Date getDate();
 	string getDescription();
-	int getAmount();
+	double getAmount();
 
 	void setId(int newId);
 	void setUserId(int newUserId);

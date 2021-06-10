@@ -11,15 +11,14 @@
 using namespace std;
 
 class FileXML {
-	const string FILE_NAME;
-	CMarkup xml;
-
-	bool fileExists();
+	const CString FILE_NAME;		
 
 public:
 	FileXML(string fileName);
 
-	void addDataToFile(string TypeOfData);
+	CString getFileName();
+
+	bool fileExists();
 
 };
 

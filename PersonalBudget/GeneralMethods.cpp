@@ -116,3 +116,20 @@ int GeneralMethods::charToInt(char character) {
 
     return integer;
 }
+
+string GeneralMethods::CStringToString(CString cstring) {    
+    stringstream ss;
+    string convertedCString;
+    size_t size = (cstring.GetLength() + 1) * 4;
+    char* buf = new char[size + 1];
+
+    if (buf)
+    {
+        int lt = WideCharToMultiByte(CP_UTF8, 0, (LPCTSTR)cstring, cstring.GetLength() + 1, buf, size, 0, 0);
+    }    
+
+    ss << buf;
+    ss >> convertedCString;
+
+    return convertedCString;
+}
