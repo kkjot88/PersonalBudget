@@ -41,11 +41,10 @@ char PersonalBudget::chooseOptionMainMenu() {
 }
 
 void PersonalBudget::userSignIn() {
-	userManager.signIn();
-	if (userManager.isUserSignedIn()) {
-		int newUserId = userManager.generateNewUserId();
-		incomeManager = new IncomeManager(NAME_OF_INCOME_FILE_XML, newUserId);
-		//expenseManager = new expenseManager(NAME_OF_EXPENSE_FILE_XML, newUserId);
+	int userId = userManager.signIn();
+	if (userManager.isUserSignedIn()) {		
+		incomeManager = new IncomeManager(NAME_OF_INCOME_FILE_XML, userId);
+		//expenseManager = new expenseManager(NAME_OF_EXPENSE_FILE_XML, userId);
 	}
 }
 

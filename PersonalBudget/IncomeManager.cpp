@@ -1,5 +1,15 @@
 #include "IncomeManager.h"
 
+IncomeManager::IncomeManager(
+	string nameOfIncomeFileXML,
+	int signedInUserId)
+	:
+	incomeFileXML(nameOfIncomeFileXML),
+	SIGNED_IN_USER_ID(signedInUserId)
+{
+	//income = incomeFileXML.
+}
+
 Date IncomeManager::askForIncomeDate() {	
 	cout << "1. Today" << endl;
 	cout << "2. Different date" << endl << endl;
@@ -101,16 +111,6 @@ double IncomeManager::countSumOfIncomeInVector(vector<Income> incomeToSum) {
 
 bool IncomeManager::compareIncomeByDates(Income firstIncome, Income secondIncome) {
 	return (firstIncome.getDate() < secondIncome.getDate());
-}
-
-IncomeManager::IncomeManager(
-	string nameOfIncomeFileXML,
-	int signedInUserId
-):
-	//incomeFileXML(nameOfIncomeFileXML),
-	SIGNED_IN_USER_ID(signedInUserId)
-{
-	//income = incomeFileXML.
 }
 
 void IncomeManager::addIncome() {
