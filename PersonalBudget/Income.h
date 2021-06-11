@@ -9,12 +9,13 @@ using namespace std;
 
 class Income {
 	int id, userId;
-	Date date;
-	string description;
+	Date date;	
 	double amount;
+	string description;
+
 public:
 	Income();
-	Income(int _id, int _userId, Date _date, string _description, double _amount);
+	Income(int _id, int _userId, Date _date, double _amount, string _description);
 
 	int getId();
 	int getUserId();

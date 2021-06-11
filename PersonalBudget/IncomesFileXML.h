@@ -1,5 +1,5 @@
-#ifndef INCOMEFILEXML_H
-#define INCOMEFILEXML_H
+#ifndef INCOMESFILEXML_H
+#define INCOMESFILEXML_H
 
 #include <vector>
 
@@ -11,11 +11,14 @@ using namespace std;
 
 class IncomesFileXML : FileXML {
 	CMarkup xml;
+	int lastIncomeId;
 
 public:
 	IncomesFileXML(string nameOfIncomesFile);
 
-	vector<Income> loadIncomesFromFile();
+	int getLastIncomeId();
+
+	vector<Income> loadIncomesFromFile(int signedInUserId);
 	void addIncomeToFile(Income income);
 
 };

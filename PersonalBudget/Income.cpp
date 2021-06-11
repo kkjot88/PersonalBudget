@@ -3,7 +3,7 @@
 Income::Income() {
 }
 
-Income::Income(int _id, int _userId, Date _date, string _description, double _amount) :
+Income::Income(int _id, int _userId, Date _date, double _amount, string _description) :
     id(_id),
     userId(_userId),
     date(_date),

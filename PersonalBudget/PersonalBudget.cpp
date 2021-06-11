@@ -2,12 +2,12 @@
 
 PersonalBudget::PersonalBudget(
 	string nameOfUserFileXML, 
-	string nameOfIncomeFileXML, 
-	string nameOfExpenseFileXML
+	string nameOfIncomesFileXML, 
+	string nameOfExpensesFileXML
 ):
 	userManager(nameOfUserFileXML),
-	NAME_OF_INCOME_FILE_XML(nameOfIncomeFileXML),
-	NAME_OF_EXPENSE_FILE_XML(nameOfExpenseFileXML)
+	NAME_OF_INCOME_FILE_XML(nameOfIncomesFileXML),
+	NAME_OF_EXPENSE_FILE_XML(nameOfExpensesFileXML)
 {
 	incomeManager = NULL;
 	expenseManager = NULL;

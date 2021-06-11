@@ -15,7 +15,7 @@ using namespace std;
 class IncomeManager {
 	vector<Income> incomes;
 	const int SIGNED_IN_USER_ID;
-	IncomesFileXML incomeFileXML;
+	IncomesFileXML incomesFileXML;
 
 	Date askForIncomeDate();
 	Income askForIncomeData(Date newDate);
@@ -26,10 +26,9 @@ class IncomeManager {
 	double countSumOfIncomesInVector(vector<Income> incomesToSum);
 	static bool compareIncomesByDates(Income firstIncome, Income secondIncome);
 	
-public:	
+public:		
 	IncomeManager(string nameOfIncomesFileXML, int signedInUserId);
-
-	//void loadCurrentUserIncomes();
+	
 	void addIncome();
 	double showCurrentMonthIncomesAndGetTotal();
 	double showPreviousMonthIncomesAndGetTotal();

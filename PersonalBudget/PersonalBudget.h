@@ -18,7 +18,7 @@ class PersonalBudget {
 	const string NAME_OF_EXPENSE_FILE_XML;
 
 public:
-	PersonalBudget(string nameOfUserFileXML, string nameOfIncomeFileXML, string nameOfExpenseFileXML);
+	PersonalBudget(string nameOfUserFileXML, string nameOfIncomesFileXML, string nameOfExpenseFileXML);
 	~PersonalBudget();
 
 	void showAllUsers();

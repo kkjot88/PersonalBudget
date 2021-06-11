@@ -4,10 +4,10 @@ IncomeManager::IncomeManager(
 	string nameOfIncomesFileXML,
 	int signedInUserId
 ) :
-	incomeFileXML(nameOfIncomesFileXML),
+	incomesFileXML(nameOfIncomesFileXML),
 	SIGNED_IN_USER_ID(signedInUserId)
 {
-	//incomes = IncomesFileXML.
+	incomes = incomesFileXML.loadIncomesFromFile(SIGNED_IN_USER_ID);
 }
 
 Date IncomeManager::askForIncomeDate() {	
@@ -56,7 +56,7 @@ int IncomeManager::generateNewIncomeId() {
 		return 1;
 	}
 	else {
-		return incomes.back().getId() + 1;
+		return incomesFileXML.getLastIncomeId() + 1;
 	}
 }
 
@@ -120,7 +120,7 @@ void IncomeManager::addIncome() {
 	newIncome = askForIncomeData(incomeDate);
 	incomes.push_back(newIncome);
 
-	incomeFileXML.addIncomeToFile(newIncome);
+	incomesFileXML.addIncomeToFile(newIncome);
 
 	cout << "Income added successfully." << endl;
 }
