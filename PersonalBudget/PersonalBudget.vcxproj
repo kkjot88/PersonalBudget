@@ -148,6 +148,7 @@
     <ClCompile Include="Expense.cpp" />
     <ClCompile Include="ExpenseManager.cpp" />
     <ClCompile Include="FileXML.cpp" />
+    <ClCompile Include="FinanceManager.cpp" />
     <ClCompile Include="GeneralMethods.cpp" />
     <ClCompile Include="Income.cpp" />
     <ClCompile Include="IncomesFileXML.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="Expense.h" />
     <ClInclude Include="ExpenseManager.h" />
     <ClInclude Include="FileXML.h" />
+    <ClInclude Include="FinanceManager.h" />
     <ClInclude Include="GeneralMethods.h" />
     <ClInclude Include="Income.h" />
     <ClInclude Include="IncomesFileXML.h" />

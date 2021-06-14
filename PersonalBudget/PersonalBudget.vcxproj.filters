@@ -54,6 +54,9 @@
     <ClCompile Include="IncomesFileXML.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FinanceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PersonalBudget.h">
@@ -90,6 +93,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IncomesFileXML.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FinanceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
