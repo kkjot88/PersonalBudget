@@ -38,7 +38,9 @@ bool UserManager::doesLoginExists(string login) {
     return false;
 }
 
-UserManager::UserManager(string NameOfUserFileXML) {
+UserManager::UserManager(string NameOfUserFileXML)
+    : signedInUserId(0)
+{
 }
 
 void UserManager::showAllUsers() {

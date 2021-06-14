@@ -13,7 +13,8 @@ class UserManager {
 	vector<User> users;
 	int signedInUserId;
 
-	User enterUserInfo();	
+	User enterUserInfo();
+	int generateNewUserId();
 	bool doesLoginExists(string login);
 
 public:
@@ -22,8 +23,7 @@ public:
 	void showAllUsers();
 
 	void signUp();
-	bool isUserSignedIn();
-	int generateNewUserId();
+	bool isUserSignedIn();	
 	int signIn();
 };
 
