@@ -1,5 +1,17 @@
 #include "Expense.h"
 
+Expense::Expense() {
+}
+
+Expense::Expense(int _id, int _userId, Date _date, double _amount, string _description) :
+    id(_id),
+    userId(_userId),
+    date(_date),
+    description(_description),
+    amount(_amount)
+{
+}
+
 int Expense::getId() {
     return id;
 }
@@ -16,7 +28,7 @@ string Expense::getDescription() {
     return description;
 }
 
-int Expense::getAmount() {
+double Expense::getAmount() {
     return amount;
 }
 

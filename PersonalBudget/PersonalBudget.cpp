@@ -43,8 +43,8 @@ char PersonalBudget::chooseOptionMainMenu() {
 void PersonalBudget::userSignIn() {
 	int userId = userManager.signIn();
 	if (userManager.isUserSignedIn()) {		
-		incomeManager = new IncomeManager(NAME_OF_INCOME_FILE_XML, userId);
-		//expenseManager = new expenseManager(NAME_OF_EXPENSE_FILE_XML, userId);
+		incomeManager = new FinanceManager<Income>(NAME_OF_INCOME_FILE_XML, userId);
+		expenseManager = new FinanceManager<Expense>(NAME_OF_EXPENSE_FILE_XML, userId);
 	}
 }
 
@@ -58,18 +58,18 @@ bool PersonalBudget::isUserSignedIn() {
 
 void PersonalBudget::addIncome() {
 	if (userManager.isUserSignedIn())
-		incomeManager->addIncome();
+		incomeManager->addTransaction();
 	else
 		cout << "Not signed in" << endl;
 }
 
 void PersonalBudget::showCurrentMonthBalance() {
-	double total = incomeManager->showCurrentMonthIncomesAndGetTotal();
+	double total = incomeManager->showCurrentMonthTransactionsAndGetTotal();
 	cout << total << endl;
 
 }
 
 void PersonalBudget::showPreviousMonthBalance() {
-	double total = incomeManager->showPreviousMonthIncomesAndGetTotal();
+	double total = incomeManager->showPreviousMonthTransactionsAndGetTotal();
 	cout << total << endl;
 }

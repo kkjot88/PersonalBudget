@@ -146,13 +146,9 @@
   <ItemGroup>
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Expense.cpp" />
-    <ClCompile Include="ExpenseManager.cpp" />
     <ClCompile Include="FileXML.cpp" />
-    <ClCompile Include="FinanceManager.cpp" />
     <ClCompile Include="GeneralMethods.cpp" />
     <ClCompile Include="Income.cpp" />
-    <ClCompile Include="IncomesFileXML.cpp" />
-    <ClCompile Include="IncomeManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Markup.cpp" />
     <ClCompile Include="PersonalBudget.cpp" />
@@ -162,13 +158,11 @@
   <ItemGroup>
     <ClInclude Include="Date.h" />
     <ClInclude Include="Expense.h" />
-    <ClInclude Include="ExpenseManager.h" />
     <ClInclude Include="FileXML.h" />
     <ClInclude Include="FinanceManager.h" />
     <ClInclude Include="GeneralMethods.h" />
     <ClInclude Include="Income.h" />
-    <ClInclude Include="IncomesFileXML.h" />
-    <ClInclude Include="IncomeManager.h" />
+    <ClInclude Include="TransactionsFileXML.h" />
     <ClInclude Include="Markup.h" />
     <ClInclude Include="PersonalBudget.h" />
     <ClInclude Include="User.h" />

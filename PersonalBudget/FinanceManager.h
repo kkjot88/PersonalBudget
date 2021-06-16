@@ -8,7 +8,7 @@
 #include "Income.h"
 #include "Expense.h"
 #include "GeneralMethods.h"
-#include "IncomesFileXML.h"
+#include "TransactionsFileXML.h"
 //#include "ExpenseFileXML.h"
 
 using namespace std;
@@ -17,7 +17,7 @@ template <class  T>
 class FinanceManager {
 	vector<T> transactions;
 	const int SIGNED_IN_USER_ID;
-	IncomesFileXML incomesFileXML;
+	TransactionsFileXML<T> transactionsFileXML;
 
 	Date askForDate();	
 	T askForData(Date newDate);
@@ -29,7 +29,7 @@ class FinanceManager {
 	static bool compareByDates(T firstTransaction, T secondTransaction);
 
 public:
-	FinanceManager(string nameOfIncomesFileXML, int signedInUserId);
+	FinanceManager(string nameOfTransactionsFileXML, int signedInUserId);
 
 	void addTransaction();
 	double showCurrentMonthTransactionsAndGetTotal();
@@ -37,7 +37,7 @@ public:
 	double showGivenPeriodTransactionsAndGetTotal();
 };
 
-//#include "FinanceManager.cpp"
+#include "FinanceManager.cpp"
 
 #endif
 

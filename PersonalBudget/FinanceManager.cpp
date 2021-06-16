@@ -1,14 +1,12 @@
-#include "FinanceManager.h"
-
 template <class T>
 FinanceManager<T>::FinanceManager(
-	string nameOfIncomesFileXML,
+	string nameOfTransactionsFileXML,
 	int signedInUserId
 ) :
-	incomesFileXML(nameOfIncomesFileXML),
+	transactionsFileXML(nameOfTransactionsFileXML),
 	SIGNED_IN_USER_ID(signedInUserId)
 {
-	//transactions = incomesFileXML.loadIncomesFromFile(SIGNED_IN_USER_ID);
+	transactions = transactionsFileXML.loadTransactionsFromFile(SIGNED_IN_USER_ID);
 }
 
 template <class T>
@@ -60,7 +58,7 @@ int FinanceManager<T>::generateNewId() {
 		return 1;
 	}
 	else {
-		return incomesFileXML.getLastIncomeId() + 1;
+		return transactionsFileXML.getLastIncomeId() + 1;
 	}
 }
 
