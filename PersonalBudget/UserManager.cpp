@@ -38,6 +38,24 @@ bool UserManager::doesLoginExists(string login) {
     return false;
 }
 
+string UserManager::getNewPassword(string oldPassword) {
+    string newPassword = "";
+    cout << "New password: ";
+    newPassword = GeneralMethods::readLine();
+
+    while (true) {
+        if (newPassword == oldPassword) {
+            cout << "New password is same as previous one." << endl;
+            cout << "Try again: ";
+            newPassword = GeneralMethods::readLine();
+        }
+        else {
+            cout << "Password changed successfully." << endl;
+            return newPassword;
+        }
+    }    
+}
+
 UserManager::UserManager(string NameOfUserFileXML)
     : signedInUserId(0)
 {
@@ -55,7 +73,7 @@ void UserManager::signUp() {
     User user = enterUserInfo();
 
     users.push_back(user);
-    //plikZUzytkownikami.dopiszUzytkownikaDoPliku(uzytkownik);
+
 
     cout << endl << "User signed up succesfully" << endl << endl;
     system("pause");
@@ -102,4 +120,17 @@ int UserManager::signIn() {
     cout << "There is no user with given login" << endl << endl;
     system("pause");
     return 0;
+}
+
+void UserManager::changePassword() {
+    int userListSize = users.size();
+    for (int i = 0; i < userListSize; i++) {
+        if (users[i].getId() == signedInUserId) {
+            users[i].setPassword(getNewPassword(users[i].getPassword()));
+        }
+    }
+}
+
+void UserManager::signOut() {
+    signedInUserId = 0;
 }

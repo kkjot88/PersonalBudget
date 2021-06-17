@@ -27,11 +27,14 @@ public:
 	void userSignUp();
 	bool isUserSignedIn();
 
+	char chooseOptionUserMenu();
 	void addIncome();
-	//void addExpense();
+	void addExpense();
 	void showCurrentMonthBalance();
 	void showPreviousMonthBalance();
-
+	void showGivenPeriodBalance();
+	void changeSignedInUserPassword();
+	void userSignOut();
 };
 
 #endif

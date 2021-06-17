@@ -16,6 +16,7 @@ class UserManager {
 	User enterUserInfo();
 	int generateNewUserId();
 	bool doesLoginExists(string login);
+	string getNewPassword(string oldPassword);
 
 public:
 	UserManager(string NameOfUserFileXML);
@@ -25,6 +26,8 @@ public:
 	void signUp();
 	bool isUserSignedIn();	
 	int signIn();
+	void changePassword();
+	void signOut();
 };
 
 #endif

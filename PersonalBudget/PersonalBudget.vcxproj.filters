@@ -45,6 +45,9 @@
     <ClCompile Include="FileXML.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UsersFileXML.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PersonalBudget.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FinanceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UsersFileXML.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
