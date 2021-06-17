@@ -5,6 +5,16 @@ User UserManager::enterUserInfo() {
 
     user.setId(generateNewUserId());
 
+    string name;
+    cout << endl << "Enter name: ";
+    getline(cin, name);
+    user.setName(name);
+
+    string surname;
+    cout << "Enter surname: ";
+    getline(cin, surname);
+    user.setSurname(surname);
+
     string login;
     do
     {
@@ -56,9 +66,11 @@ string UserManager::getNewPassword(string oldPassword) {
     }    
 }
 
-UserManager::UserManager(string NameOfUserFileXML)
-    : signedInUserId(0)
+UserManager::UserManager(string nameOfUserFileXML) :
+    usersFileXML(nameOfUserFileXML),
+    signedInUserId(0)
 {
+    users = usersFileXML.loadUsersFromFile();
 }
 
 void UserManager::showAllUsers() {
@@ -73,7 +85,7 @@ void UserManager::signUp() {
     User user = enterUserInfo();
 
     users.push_back(user);
-
+    usersFileXML.addUserToFile(user);
 
     cout << endl << "User signed up succesfully" << endl << endl;
     system("pause");

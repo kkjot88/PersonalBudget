@@ -1,5 +1,5 @@
-#ifndef INCOMESFILEXML_H
-#define INCOMESFILEXML_H
+#ifndef TRANSACTIONSFILEXML_H
+#define TRANSACTIONSFILEXML_H
 
 #include <vector>
 
@@ -18,7 +18,7 @@ class TransactionsFileXML : FileXML {
 public:
 	TransactionsFileXML(string nameOfTransactionsFile);
 
-	int getLastIncomeId();
+	int getLastTransactionId();
 
 	vector<T> loadTransactionsFromFile(int signedInUserId);
 	void addTransactionToFile(T transaction);

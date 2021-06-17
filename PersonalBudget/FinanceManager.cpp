@@ -54,12 +54,7 @@ T FinanceManager<T>::askForData(Date newDate) {
 
 template<class T>
 int FinanceManager<T>::generateNewId() {
-	if (transactions.empty()) {
-		return 1;
-	}
-	else {
-		return transactionsFileXML.getLastIncomeId() + 1;
-	}
+	return (transactionsFileXML.getLastTransactionId() + 1);
 }
 
 template<class T>
@@ -71,20 +66,40 @@ void FinanceManager<T>::showOneTransaction(T transaction) {
 }
 
 template<class T>
-void FinanceManager<T>::showTransactionsForGivenPeriod(vector<T> givenPeriodTransactions, Date startDate, Date endDate) {
-	system("cls");
-	if (!givenPeriodTransactions.empty()) {
-		cout << "            >>> Transactions " << startDate.getDate() << "/" << endDate.getDate() << " <<<" << endl;
-		cout << "-------------------------------------------------------------" << endl;
+void FinanceManager<T>::showTransactionsForGivenPeriod(vector<T> givenPeriodTransactions, Date startDate, Date endDate) {	
+}
 
-		for (typename vector<T>::iterator itr = givenPeriodTransactions.begin(); itr != givenPeriodTransactions.end(); itr++)
+template<>
+inline void FinanceManager<Income>::showTransactionsForGivenPeriod(vector<Income> givenPeriodTransactions, Date startDate, Date endDate) {
+	if (!givenPeriodTransactions.empty()) {
+		cout << "              >>> Incomes " << startDate.getDate() << "/" << endDate.getDate() << " <<<" << endl;
+		cout << "---------------------------------------------------------------" << endl;
+
+		for (typename vector<Income>::iterator itr = givenPeriodTransactions.begin(); itr != givenPeriodTransactions.end(); itr++)
 		{
 			showOneTransaction(*itr);
 		}
 		cout << endl;
 	}
 	else {
-		cout << endl << "No transactions in given period " << endl;
+		cout << endl << "No incomes in given period." << endl;
+	}
+}
+
+template<>
+inline void FinanceManager<Expense>::showTransactionsForGivenPeriod(vector<Expense> givenPeriodTransactions, Date startDate, Date endDate) {
+	if (!givenPeriodTransactions.empty()) {
+		cout << "             >>> Expenses " << startDate.getDate() << "/" << endDate.getDate() << " <<<" << endl;
+		cout << "---------------------------------------------------------------" << endl;
+
+		for (typename vector<Expense>::iterator itr = givenPeriodTransactions.begin(); itr != givenPeriodTransactions.end(); itr++)
+		{
+			showOneTransaction(*itr);
+		}
+		cout << endl;
+	}
+	else {
+		cout << endl << "No expenses in given period." << endl;
 	}
 }
 
@@ -121,7 +136,7 @@ void FinanceManager<T>::addTransaction() {
 	newTransaction = askForData(transactionDate);
 	transactions.push_back(newTransaction);
 
-	//incomesFileXML.addIncomeToFile(newTransaction);
+	transactionsFileXML.addTransactionToFile(newTransaction);
 
 	cout << "Transaction added successfully." << endl;
 }

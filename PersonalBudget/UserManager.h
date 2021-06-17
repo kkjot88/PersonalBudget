@@ -6,12 +6,14 @@
 
 #include "User.h"
 #include "GeneralMethods.h"
+#include "UsersFileXML.h"
 
 using namespace std;
 
 class UserManager {
 	vector<User> users;
 	int signedInUserId;
+	UsersFileXML usersFileXML;
 
 	User enterUserInfo();
 	int generateNewUserId();
@@ -19,7 +21,7 @@ class UserManager {
 	string getNewPassword(string oldPassword);
 
 public:
-	UserManager(string NameOfUserFileXML);
+	UserManager(string nameOfUserFileXML);
 
 	void showAllUsers();
 

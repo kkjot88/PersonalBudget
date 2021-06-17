@@ -91,31 +91,36 @@ void PersonalBudget::addExpense() {
 }
 
 void PersonalBudget::showCurrentMonthBalance() {
+	system("cls");
 	double totalIncome = incomeManager->showCurrentMonthTransactionsAndGetTotal();
 	double totalExpense = expenseManager->showCurrentMonthTransactionsAndGetTotal();
 
 	cout << "Total income: " << totalIncome << endl;
 	cout << "Total expense: " << totalExpense << endl;
-	cout << "Difference: " << totalIncome - totalExpense << endl;
-
+	cout << "Saldo: " << totalIncome - totalExpense << endl << endl;
+	system("pause");
 }
 
 void PersonalBudget::showPreviousMonthBalance() {
+	system("cls");
 	double totalIncome = incomeManager->showPreviousMonthTransactionsAndGetTotal();
 	double totalExpense = expenseManager->showPreviousMonthTransactionsAndGetTotal();
 
 	cout << "Total income: " << totalIncome << endl;
 	cout << "Total expense: " << totalExpense << endl;
-	cout << "Difference: " << totalIncome - totalExpense << endl;
+	cout << "Saldo: " << totalIncome - totalExpense << endl;
+	system("pause");
 }
 
 void PersonalBudget::showGivenPeriodBalance() {
+	system("cls");
 	double totalIncome = incomeManager->showGivenPeriodTransactionsAndGetTotal();
 	double totalExpense = expenseManager->showGivenPeriodTransactionsAndGetTotal();
 
 	cout << "Total income: " << totalIncome << endl;
 	cout << "Total expense: " << totalExpense << endl;
-	cout << "Difference: " << totalIncome - totalExpense << endl;
+	cout << "Saldo: " << totalIncome - totalExpense << endl;
+	system("pause");
 }
 
 void PersonalBudget::changeSignedInUserPassword() {

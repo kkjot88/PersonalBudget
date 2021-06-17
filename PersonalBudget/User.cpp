@@ -1,5 +1,18 @@
 #include "User.h"
 
+User::User() {
+
+}
+
+User::User(int _id, string _name, string _surname, string _login, string _password) :
+    id(_id),
+    name(_name),
+    surname(_surname),
+    login(_login),
+    password(_password)
+{
+}
+
 int User::getId() {
     return id;
 }

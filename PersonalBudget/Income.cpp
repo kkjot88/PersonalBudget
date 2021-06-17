@@ -1,6 +1,7 @@
 #include "Income.h"
 
 Income::Income() {
+    
 }
 
 Income::Income(int _id, int _userId, Date _date, double _amount, string _description) :

@@ -10,6 +10,9 @@ class User {
 	string login, password;
 	string name, surname;
 public:
+	User();
+	User(int _id, string _name, string _surname, string _login, string _password);
+
 	int getId();
 	string getLogin();
 	string getPassword();

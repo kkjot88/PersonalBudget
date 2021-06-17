@@ -11,7 +11,7 @@ TransactionsFileXML<T>::TransactionsFileXML(string nameOfTransactionsFile) :
 }
 
 template <class T>
-int TransactionsFileXML<T>::getLastIncomeId() {
+int TransactionsFileXML<T>::getLastTransactionId() {
 	return lastTransactionId;
 }
 
@@ -138,7 +138,7 @@ inline vector<Expense> TransactionsFileXML<Expense>::loadTransactionsFromFile(in
 			expenses.push_back(expense);
 		}
 
-		lastTransactionId = stoi(GeneralMethods::CStringToString(idData));
+		lastTransactionId = stoi(GeneralMethods::CStringToString(idData));		
 	}
 
 	return expenses;
@@ -174,7 +174,7 @@ void TransactionsFileXML<T>::addTransactionToFile(T transaction) {
 
 template <>
 inline void TransactionsFileXML<Income>::addTransactionToFile(Income income) {
-	lastTransactionId = income.getUserId();
+	lastTransactionId = income.getId();
 
 	CString const INCOME("INCOME");
 
@@ -202,7 +202,7 @@ inline void TransactionsFileXML<Income>::addTransactionToFile(Income income) {
 
 template <>
 inline void TransactionsFileXML<Expense>::addTransactionToFile(Expense expense) {
-	lastTransactionId = expense.getUserId();
+	lastTransactionId = expense.getId();
 
 	CString const EXPENSE("EXPENSE");
 

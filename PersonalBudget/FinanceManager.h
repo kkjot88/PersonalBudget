@@ -23,6 +23,7 @@ class FinanceManager {
 	T askForData(Date newDate);
 	int generateNewId();	
 	void showOneTransaction(T transaction);	
+	void showTransactionsTitle(Date startDate, Date endDate);
 	void showTransactionsForGivenPeriod(vector<T> givenPeriodTransactions, Date startDate, Date endDate);
 	vector<T> createVectorForGivenPeriod(Date startDate, Date endDate);
 	double countTotalOfGivenTransactions(vector<T> givenTransactions);
