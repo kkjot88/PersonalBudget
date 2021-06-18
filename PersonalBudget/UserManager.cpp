@@ -7,25 +7,25 @@ User UserManager::enterUserInfo() {
 
     string name;
     cout << endl << "Enter name: ";
-    getline(cin, name);
+    name = GeneralMethods::readLine();
     user.setName(name);
 
     string surname;
     cout << "Enter surname: ";
-    getline(cin, surname);
+    surname = GeneralMethods::readLine();
     user.setSurname(surname);
 
     string login;
     do
     {
         cout << "Enter login: ";
-        getline(cin, login);
+        login = GeneralMethods::readLine();
         user.setLogin(login);
     } while (doesLoginExists(user.getLogin()) == true);
 
     string password;
     cout << "Enter password: ";
-    getline(cin, password);
+    password = GeneralMethods::readLine();
     user.setPassword(password);
 
     return user;
@@ -50,7 +50,7 @@ bool UserManager::doesLoginExists(string login) {
 
 string UserManager::getNewPassword(string oldPassword) {
     string newPassword = "";
-    cout << "New password: ";
+    cout << endl << "New password: ";
     newPassword = GeneralMethods::readLine();
 
     while (true) {
@@ -59,8 +59,7 @@ string UserManager::getNewPassword(string oldPassword) {
             cout << "Try again: ";
             newPassword = GeneralMethods::readLine();
         }
-        else {
-            cout << "Password changed successfully." << endl;
+        else {            
             return newPassword;
         }
     }    
@@ -135,12 +134,20 @@ int UserManager::signIn() {
 }
 
 void UserManager::changePassword() {
+    string newPassword = "";
+
     int userListSize = users.size();
     for (int i = 0; i < userListSize; i++) {
         if (users[i].getId() == signedInUserId) {
-            users[i].setPassword(getNewPassword(users[i].getPassword()));
+            newPassword = getNewPassword(users[i].getPassword());
+            users[i].setPassword(newPassword);
         }
     }
+
+    usersFileXML.changePasswordInFIle(signedInUserId, newPassword);
+
+    cout << endl << "Password changed successfully." << endl << endl;
+    system("pause");
 }
 
 void UserManager::signOut() {

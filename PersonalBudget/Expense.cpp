@@ -1,7 +1,15 @@
 #include "Expense.h"
 
-Expense::Expense() {
+Expense::Expense() :
+    id(0),
+    userId(0),
+    amount(0.0),
+    description("")
+{
+    Date newDate("2000-01-01");
+    date = newDate;
 }
+
 
 Expense::Expense(int _id, int _userId, Date _date, double _amount, string _description) :
     id(_id),
@@ -41,7 +49,7 @@ void Expense::setUserId(int newUserId) {
 }
 
 void Expense::setDate() {
-    //date obtained with ctime
+    date.setDate();
 }
 
 void Expense::setDate(string userDate) {

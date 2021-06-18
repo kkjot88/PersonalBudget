@@ -61,7 +61,8 @@ template<class T>
 void FinanceManager<T>::showOneTransaction(T transaction) {
 	cout << "Id: " << transaction.getId();
 	cout << " | " << transaction.getDate().getDate();
-	cout << " | Amount: " << transaction.getAmount() << endl;
+	cout << fixed << setprecision(2);
+	cout << " | Amount: " <<  transaction.getAmount() << endl;
 	cout << "                   | Description: " << transaction.getDescription() << endl;
 }
 
@@ -71,10 +72,9 @@ void FinanceManager<T>::showTransactionsForGivenPeriod(vector<T> givenPeriodTran
 
 template<>
 inline void FinanceManager<Income>::showTransactionsForGivenPeriod(vector<Income> givenPeriodTransactions, Date startDate, Date endDate) {
+	cout << "              >>> Incomes " << startDate.getDate() << "/" << endDate.getDate() << " <<<" << endl;
+	cout << "---------------------------------------------------------------" << endl;
 	if (!givenPeriodTransactions.empty()) {
-		cout << "              >>> Incomes " << startDate.getDate() << "/" << endDate.getDate() << " <<<" << endl;
-		cout << "---------------------------------------------------------------" << endl;
-
 		for (typename vector<Income>::iterator itr = givenPeriodTransactions.begin(); itr != givenPeriodTransactions.end(); itr++)
 		{
 			showOneTransaction(*itr);
@@ -82,7 +82,7 @@ inline void FinanceManager<Income>::showTransactionsForGivenPeriod(vector<Income
 		cout << endl;
 	}
 	else {
-		cout << endl << "No incomes in given period." << endl;
+		cout << "No incomes in given period." << endl << endl;
 	}
 }
 
@@ -99,7 +99,7 @@ inline void FinanceManager<Expense>::showTransactionsForGivenPeriod(vector<Expen
 		cout << endl;
 	}
 	else {
-		cout << endl << "No expenses in given period." << endl;
+		cout << "No expenses in given period." << endl << endl;
 	}
 }
 
@@ -138,7 +138,8 @@ void FinanceManager<T>::addTransaction() {
 
 	transactionsFileXML.addTransactionToFile(newTransaction);
 
-	cout << "Transaction added successfully." << endl;
+	cout << endl << "Transaction added successfully." << endl << endl;
+	system("pause");
 }
 
 template<class T>
@@ -187,10 +188,7 @@ double FinanceManager<T>::showPreviousMonthTransactionsAndGetTotal() {
 }
 
 template<class T>
-double FinanceManager<T>::showGivenPeriodTransactionsAndGetTotal() {
-	Date firstDate = GeneralMethods::readDate();
-	Date secondDate = GeneralMethods::readDate();
-
+double FinanceManager<T>::showGivenPeriodTransactionsAndGetTotal(Date firstDate, Date secondDate) {
 	vector<T> givenPeriodTransactions;
 	givenPeriodTransactions = createVectorForGivenPeriod(firstDate, secondDate);
 

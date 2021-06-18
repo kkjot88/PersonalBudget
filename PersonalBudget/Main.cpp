@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int main() {
+int main() {	
 	PersonalBudget personalBudget("users.xml", "incomes.xml", "expenses.xml");
 	char userChoice;
 

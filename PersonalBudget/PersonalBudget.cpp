@@ -95,9 +95,9 @@ void PersonalBudget::showCurrentMonthBalance() {
 	double totalIncome = incomeManager->showCurrentMonthTransactionsAndGetTotal();
 	double totalExpense = expenseManager->showCurrentMonthTransactionsAndGetTotal();
 
-	cout << "Total income: " << totalIncome << endl;
+	cout << " Total income: " << totalIncome << endl;
 	cout << "Total expense: " << totalExpense << endl;
-	cout << "Saldo: " << totalIncome - totalExpense << endl << endl;
+	cout << "        Saldo: " << totalIncome - totalExpense << endl << endl;
 	system("pause");
 }
 
@@ -106,20 +106,28 @@ void PersonalBudget::showPreviousMonthBalance() {
 	double totalIncome = incomeManager->showPreviousMonthTransactionsAndGetTotal();
 	double totalExpense = expenseManager->showPreviousMonthTransactionsAndGetTotal();
 
-	cout << "Total income: " << totalIncome << endl;
+	cout << " Total income: " << totalIncome << endl;
 	cout << "Total expense: " << totalExpense << endl;
-	cout << "Saldo: " << totalIncome - totalExpense << endl;
+	cout << "        Saldo: " << totalIncome - totalExpense << endl << endl;
 	system("pause");
 }
 
-void PersonalBudget::showGivenPeriodBalance() {
+void PersonalBudget::showGivenPeriodBalance() {	
+	cout << endl;
+	Date firstDate = GeneralMethods::readDate();
+	Date secondDate = GeneralMethods::readDate();
 	system("cls");
-	double totalIncome = incomeManager->showGivenPeriodTransactionsAndGetTotal();
-	double totalExpense = expenseManager->showGivenPeriodTransactionsAndGetTotal();
 
-	cout << "Total income: " << totalIncome << endl;
+	if (firstDate > secondDate) {
+		GeneralMethods::switchDates(firstDate, secondDate);
+	}
+
+	double totalIncome = incomeManager->showGivenPeriodTransactionsAndGetTotal(firstDate, secondDate);
+	double totalExpense = expenseManager->showGivenPeriodTransactionsAndGetTotal(firstDate, secondDate);
+
+	cout << " Total income: " << totalIncome << endl;
 	cout << "Total expense: " << totalExpense << endl;
-	cout << "Saldo: " << totalIncome - totalExpense << endl;
+	cout << "        Saldo: " << totalIncome - totalExpense << endl << endl;
 	system("pause");
 }
 

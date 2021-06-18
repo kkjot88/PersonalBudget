@@ -30,6 +30,7 @@ public:
 	int signIn();
 	void changePassword();
 	void signOut();
+
 };
 
 #endif

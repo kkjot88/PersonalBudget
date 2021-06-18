@@ -15,6 +15,30 @@ int UsersFileXML::getLastUserId() {
 	return lastUserId;
 }
 
+void UsersFileXML::changePasswordInFIle(int signedInUserId, string newPassword) {
+	CString const USER("USER");
+	
+	CString const ID("ID");
+	CString signedInUserIdData = to_string(signedInUserId).c_str();
+	CString const PASSWORD("PASSWORD");
+	CString newPasswordData = newPassword.c_str();
+
+	xml.ResetPos();
+
+	while (xml.FindElem(USER)) {
+		xml.IntoElem();
+		xml.FindElem(ID);
+		CString searchedIdData = xml.GetData();		
+		if (signedInUserIdData == searchedIdData) {
+			xml.FindElem(PASSWORD);
+			xml.SetData(newPasswordData);
+		}
+		xml.OutOfElem();
+	}
+
+	xml.Save(FileXML::getFileName());
+}
+
 vector<User> UsersFileXML::loadUsersFromFile() {
 	vector<User> users;
 

@@ -2,6 +2,7 @@
 #define DATE_H
 
 #define __STDC_WANT_LIB_EXT1__ 1
+#include <iostream>
 #include <string>
 #include <time.h>
 #include <map>
@@ -48,6 +49,7 @@ public:
 	bool operator<(Date secondDate);
 	bool operator>=(Date secondDate);
 	bool operator<=(Date secondDate);
+
 };
 
 #endif

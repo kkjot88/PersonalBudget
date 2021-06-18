@@ -35,6 +35,7 @@ public:
 	void showGivenPeriodBalance();
 	void changeSignedInUserPassword();
 	void userSignOut();
+
 };
 
 #endif

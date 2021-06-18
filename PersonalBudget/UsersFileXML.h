@@ -18,8 +18,10 @@ public:
 
 	int getLastUserId();
 
+	void changePasswordInFIle(int signedInUserId, string newPassword);
 	vector<User> loadUsersFromFile();
 	void addUserToFile(User user);
+
 };
 
 #endif

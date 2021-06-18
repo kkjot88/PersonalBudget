@@ -24,6 +24,7 @@ public:
 	void setPassword(string newPassword);
 	void setName(string newName);
 	void setSurname(string newSurname);
+
 };
 
 #endif
