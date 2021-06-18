@@ -146,31 +146,29 @@
   <ItemGroup>
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Expense.cpp" />
-    <ClCompile Include="ExpenseManager.cpp" />
     <ClCompile Include="FileXML.cpp" />
     <ClCompile Include="GeneralMethods.cpp" />
     <ClCompile Include="Income.cpp" />
-    <ClCompile Include="IncomesFileXML.cpp" />
-    <ClCompile Include="IncomeManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Markup.cpp" />
     <ClCompile Include="PersonalBudget.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="UserManager.cpp" />
+    <ClCompile Include="UsersFileXML.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Date.h" />
     <ClInclude Include="Expense.h" />
-    <ClInclude Include="ExpenseManager.h" />
     <ClInclude Include="FileXML.h" />
+    <ClInclude Include="FinanceManager.h" />
     <ClInclude Include="GeneralMethods.h" />
     <ClInclude Include="Income.h" />
-    <ClInclude Include="IncomesFileXML.h" />
-    <ClInclude Include="IncomeManager.h" />
+    <ClInclude Include="TransactionsFileXML.h" />
     <ClInclude Include="Markup.h" />
     <ClInclude Include="PersonalBudget.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="UserManager.h" />
+    <ClInclude Include="UsersFileXML.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

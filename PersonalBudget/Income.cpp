@@ -1,6 +1,13 @@
 #include "Income.h"
 
-Income::Income() {
+Income::Income() :
+    id(0),
+    userId(0),
+    amount(0.0),
+    description("")
+{
+    Date newDate("2000-01-01");
+    date = newDate;
 }
 
 Income::Income(int _id, int _userId, Date _date, double _amount, string _description) :
@@ -41,7 +48,7 @@ void Income::setUserId(int newUserId) {
 }
 
 void Income::setDate() {
-    //date obtained with ctime
+    date.setDate();
 }
 
 void Income::setDate(string userDate) {

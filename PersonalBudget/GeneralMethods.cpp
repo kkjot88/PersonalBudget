@@ -2,7 +2,14 @@
 
 string GeneralMethods::readLine() {
     string entry = "";
-    getline(cin, entry);
+    while (entry.length() == 0) {
+        getline(cin, entry);
+        if(entry.length() == 0) {
+            cout << "No text entered." << endl;
+            cout << "Try again: ";
+        }
+    }  
+    
     return entry;
 }
 
@@ -97,8 +104,7 @@ Date GeneralMethods::readDate() {
         }
 
         Date inputDate(entry);
-        if (!inputDate.check()) {
-            cout << "Wrong date, must be later than 1999-12-31." << endl;
+        if (!inputDate.check()) {            
             cout << "Try again: ";
             continue;
         }
@@ -132,4 +138,19 @@ string GeneralMethods::CStringToString(CString cstring) {
     ss >> convertedCString;
 
     return convertedCString;
+}
+
+string GeneralMethods::doubleToStringWithTwoDigitsAfterDecimalPoint(double _double) {
+    string truncatedDouble = "";
+
+
+
+
+    return truncatedDouble;
+}
+
+void GeneralMethods::switchDates(Date& firstDate, Date& secondDate) {    
+        Date tempDate = firstDate;
+        firstDate = secondDate;
+        secondDate = tempDate;
 }

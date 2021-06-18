@@ -5,15 +5,14 @@
 #include <string>
 
 #include "UserManager.h"
-#include "IncomeManager.h"
-#include "ExpenseManager.h"
+#include "FinanceManager.h"
 
 using namespace std;
 
 class PersonalBudget {
 	UserManager userManager;
-	IncomeManager* incomeManager;
-	ExpenseManager* expenseManager;
+	FinanceManager<Income>* incomeManager;
+	FinanceManager<Expense>* expenseManager;
 	const string NAME_OF_INCOME_FILE_XML;
 	const string NAME_OF_EXPENSE_FILE_XML;
 
@@ -28,10 +27,14 @@ public:
 	void userSignUp();
 	bool isUserSignedIn();
 
+	char chooseOptionUserMenu();
 	void addIncome();
-	//void addExpense();
+	void addExpense();
 	void showCurrentMonthBalance();
 	void showPreviousMonthBalance();
+	void showGivenPeriodBalance();
+	void changeSignedInUserPassword();
+	void userSignOut();
 
 };
 

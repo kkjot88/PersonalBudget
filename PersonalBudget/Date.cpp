@@ -68,22 +68,28 @@ void Date::extractDay() {
 bool Date::checkYear() {
     if (year >= 2000) 
         return true;    
-    else
-        return false;   
+    else {
+        cout << "Wrong date, must be later than 1999-12-31." << endl;
+        return false;
+    }         
 }
 
 bool Date::checkMonth() {
     if (month > 0 && month <= 12)
         return true;
-    else
+    else {
+        cout << "Wrong month number, must be in range from 1 to 12." << endl;
+    }
         return false;
 }
 
 bool Date::checkDay() {
     if (day > 0 && day <= getNumberOfDaysInMonth())
         return true;
-    else
+    else {      
+        cout << "Wrong day number, must be in rage from 1 to " << getNumberOfDaysInMonth() << "." << endl;
         return false;
+    }
 }
 
 int Date::getYear() {

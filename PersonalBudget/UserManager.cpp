@@ -5,17 +5,27 @@ User UserManager::enterUserInfo() {
 
     user.setId(generateNewUserId());
 
+    string name;
+    cout << endl << "Enter name: ";
+    name = GeneralMethods::readLine();
+    user.setName(name);
+
+    string surname;
+    cout << "Enter surname: ";
+    surname = GeneralMethods::readLine();
+    user.setSurname(surname);
+
     string login;
     do
     {
         cout << "Enter login: ";
-        getline(cin, login);
+        login = GeneralMethods::readLine();
         user.setLogin(login);
     } while (doesLoginExists(user.getLogin()) == true);
 
     string password;
     cout << "Enter password: ";
-    getline(cin, password);
+    password = GeneralMethods::readLine();
     user.setPassword(password);
 
     return user;
@@ -38,9 +48,28 @@ bool UserManager::doesLoginExists(string login) {
     return false;
 }
 
-UserManager::UserManager(string NameOfUserFileXML)
-    : signedInUserId(0)
+string UserManager::getNewPassword(string oldPassword) {
+    string newPassword = "";
+    cout << endl << "New password: ";
+    newPassword = GeneralMethods::readLine();
+
+    while (true) {
+        if (newPassword == oldPassword) {
+            cout << "New password is same as previous one." << endl;
+            cout << "Try again: ";
+            newPassword = GeneralMethods::readLine();
+        }
+        else {            
+            return newPassword;
+        }
+    }    
+}
+
+UserManager::UserManager(string nameOfUserFileXML) :
+    usersFileXML(nameOfUserFileXML),
+    signedInUserId(0)
 {
+    users = usersFileXML.loadUsersFromFile();
 }
 
 void UserManager::showAllUsers() {
@@ -55,7 +84,7 @@ void UserManager::signUp() {
     User user = enterUserInfo();
 
     users.push_back(user);
-    //plikZUzytkownikami.dopiszUzytkownikaDoPliku(uzytkownik);
+    usersFileXML.addUserToFile(user);
 
     cout << endl << "User signed up succesfully" << endl << endl;
     system("pause");
@@ -102,4 +131,25 @@ int UserManager::signIn() {
     cout << "There is no user with given login" << endl << endl;
     system("pause");
     return 0;
+}
+
+void UserManager::changePassword() {
+    string newPassword = "";
+
+    int userListSize = users.size();
+    for (int i = 0; i < userListSize; i++) {
+        if (users[i].getId() == signedInUserId) {
+            newPassword = getNewPassword(users[i].getPassword());
+            users[i].setPassword(newPassword);
+        }
+    }
+
+    usersFileXML.changePasswordInFIle(signedInUserId, newPassword);
+
+    cout << endl << "Password changed successfully." << endl << endl;
+    system("pause");
+}
+
+void UserManager::signOut() {
+    signedInUserId = 0;
 }

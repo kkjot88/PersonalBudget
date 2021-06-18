@@ -20,6 +20,8 @@ public:
 	static Date readDate();
 	static int charToInt(char character);
 	static string CStringToString(CString cstring);
+	static string doubleToStringWithTwoDigitsAfterDecimalPoint(double _double);
+	static void switchDates(Date &firstDate, Date &secondDate);
 
 };
 

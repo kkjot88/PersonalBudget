@@ -43,8 +43,8 @@ char PersonalBudget::chooseOptionMainMenu() {
 void PersonalBudget::userSignIn() {
 	int userId = userManager.signIn();
 	if (userManager.isUserSignedIn()) {		
-		incomeManager = new IncomeManager(NAME_OF_INCOME_FILE_XML, userId);
-		//expenseManager = new expenseManager(NAME_OF_EXPENSE_FILE_XML, userId);
+		incomeManager = new FinanceManager<Income>(NAME_OF_INCOME_FILE_XML, userId);
+		expenseManager = new FinanceManager<Expense>(NAME_OF_EXPENSE_FILE_XML, userId);
 	}
 }
 
@@ -56,20 +56,92 @@ bool PersonalBudget::isUserSignedIn() {
 	return userManager.isUserSignedIn();
 }
 
+char PersonalBudget::chooseOptionUserMenu() {
+	char choice;
+
+	system("cls");
+	cout << "    >>> USER MENU <<<" << endl;
+	cout << "---------------------------" << endl;
+	cout << "1. Add income" << endl;
+	cout << "2. Add expense" << endl;
+	cout << "3. Show current month balance" << endl;
+	cout << "4. Show previous month balance" << endl;
+	cout << "5. Show given period balance" << endl;
+	cout << "6. Change password" << endl;
+	cout << "7. Sign out" << endl;
+	cout << "---------------------------" << endl;
+	cout << "Choose option: ";
+	choice = GeneralMethods::readChar();
+
+	return choice;
+}
+
 void PersonalBudget::addIncome() {
 	if (userManager.isUserSignedIn())
-		incomeManager->addIncome();
+		incomeManager->addTransaction();
+	else
+		cout << "Not signed in" << endl;
+}
+
+void PersonalBudget::addExpense() {
+	if (userManager.isUserSignedIn())
+		expenseManager->addTransaction();
 	else
 		cout << "Not signed in" << endl;
 }
 
 void PersonalBudget::showCurrentMonthBalance() {
-	double total = incomeManager->showCurrentMonthIncomesAndGetTotal();
-	cout << total << endl;
+	system("cls");
+	double totalIncome = incomeManager->showCurrentMonthTransactionsAndGetTotal();
+	double totalExpense = expenseManager->showCurrentMonthTransactionsAndGetTotal();
 
+	cout << " Total income: " << totalIncome << endl;
+	cout << "Total expense: " << totalExpense << endl;
+	cout << "        Saldo: " << totalIncome - totalExpense << endl << endl;
+	system("pause");
 }
 
 void PersonalBudget::showPreviousMonthBalance() {
-	double total = incomeManager->showPreviousMonthIncomesAndGetTotal();
-	cout << total << endl;
+	system("cls");
+	double totalIncome = incomeManager->showPreviousMonthTransactionsAndGetTotal();
+	double totalExpense = expenseManager->showPreviousMonthTransactionsAndGetTotal();
+
+	cout << " Total income: " << totalIncome << endl;
+	cout << "Total expense: " << totalExpense << endl;
+	cout << "        Saldo: " << totalIncome - totalExpense << endl << endl;
+	system("pause");
+}
+
+void PersonalBudget::showGivenPeriodBalance() {	
+	cout << endl;
+	Date firstDate = GeneralMethods::readDate();
+	Date secondDate = GeneralMethods::readDate();
+	system("cls");
+
+	if (firstDate > secondDate) {
+		GeneralMethods::switchDates(firstDate, secondDate);
+	}
+
+	double totalIncome = incomeManager->showGivenPeriodTransactionsAndGetTotal(firstDate, secondDate);
+	double totalExpense = expenseManager->showGivenPeriodTransactionsAndGetTotal(firstDate, secondDate);
+
+	cout << " Total income: " << totalIncome << endl;
+	cout << "Total expense: " << totalExpense << endl;
+	cout << "        Saldo: " << totalIncome - totalExpense << endl << endl;
+	system("pause");
+}
+
+void PersonalBudget::changeSignedInUserPassword() {
+	if (userManager.isUserSignedIn()) 
+		userManager.changePassword();
+	else
+		cout << "Not signed in" << endl;
+}
+
+void PersonalBudget::userSignOut() {
+	userManager.signOut();
+	delete incomeManager;
+	incomeManager = NULL;
+	delete expenseManager;
+	expenseManager = NULL;
 }

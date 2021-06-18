@@ -2,7 +2,6 @@
 #define DATE_H
 
 #define __STDC_WANT_LIB_EXT1__ 1
-#include <iostream>
 #include <string>
 #include <time.h>
 #include <map>
@@ -10,34 +9,35 @@
 using namespace std;
 
 class Date {
-	int year, month, day;
-	string date;
+	string year, month, day;
+	int date;
 
 	map<int, int> allMonthLength;
 
-	string getCurrentDate();
-	string combineIntoDate(int _year, int _month, int _day);
-	string monthIntToString(int _month);
-	string dayIntToString(int _day);
-	void extractYear();
-	void extractMonth();
-	void extractDay();	
+	void getCurrentYearMonthDay();
+	void combineIntoDate();	
+	string extractYear(string dateString);
+	string extractMonth(string dateString);
+	string extractDay(string dateString);
+	string formatMonth(string monthToFormat);
+	string formatDay(string dayToFormat);
 	bool checkYear();
 	bool checkMonth();
-	bool checkDay();
+	bool checkDay();	
 
 public:
 	Date();
 	Date(string newDate);
 
-	int getYear();
-	int getMonth();
-	int getDay();
-	string getDate();
-	
-	void setYear(int newYear);
-	void setMonth(int newMonth);
-	void setDay(int newDay);
+	string getYear();
+	string getMonth();
+	string getDay();
+	int getDate();
+	string getFormatedDateString();
+
+	void setYear(string newYear);
+	void setMonth(string newMonth);
+	void setDay(string newDay);
 	void setDate();
 	void setDate(string newDate);
 
@@ -49,7 +49,6 @@ public:
 	bool operator<(Date secondDate);
 	bool operator>=(Date secondDate);
 	bool operator<=(Date secondDate);
-
 };
 
 #endif
