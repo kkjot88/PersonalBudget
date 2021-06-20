@@ -26,7 +26,7 @@ public:
 	void setDate();
 	void setDate(string userDate);
 	void setDescription(string newDescription);
-	void setAmount(int newAmount);
+	void setAmount(double newAmount);
 
 };
 

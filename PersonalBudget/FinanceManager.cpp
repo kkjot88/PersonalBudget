@@ -5,7 +5,7 @@ FinanceManager<T>::FinanceManager(
 ) :
 	transactionsFileXML(nameOfTransactionsFileXML),
 	SIGNED_IN_USER_ID(signedInUserId)
-{
+{	
 	transactions = transactionsFileXML.loadTransactionsFromFile(SIGNED_IN_USER_ID);
 }
 
@@ -62,8 +62,10 @@ void FinanceManager<T>::showOneTransaction(T transaction) {
 	cout << "Id: " << transaction.getId();
 	cout << " | " << transaction.getDate().getDate();
 	cout << fixed << setprecision(2);
-	cout << " | Amount: " <<  transaction.getAmount() << endl;
-	cout << "                   | Description: " << transaction.getDescription() << endl;
+	cout << " | Amount: " << transaction.getAmount() << endl;
+	string showDescription = "                   | Description: ";
+	if (transaction.getId() > 9) showDescription = " " + showDescription;
+	cout << showDescription << transaction.getDescription() << endl;
 }
 
 template<class T>

@@ -60,6 +60,6 @@ void Expense::setDescription(string newDescription) {
     description = newDescription;
 }
 
-void Expense::setAmount(int newAmount) {
+void Expense::setAmount(double newAmount) {
     amount = newAmount;
 }

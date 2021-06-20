@@ -59,6 +59,6 @@ void Income::setDescription(string newDescription) {
     description = newDescription;
 }
 
-void Income::setAmount(int newAmount) {
+void Income::setAmount(double newAmount) {
     amount = newAmount;
 }

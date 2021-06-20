@@ -140,15 +140,6 @@ string GeneralMethods::CStringToString(CString cstring) {
     return convertedCString;
 }
 
-string GeneralMethods::doubleToStringWithTwoDigitsAfterDecimalPoint(double _double) {
-    string truncatedDouble = "";
-
-
-
-
-    return truncatedDouble;
-}
-
 void GeneralMethods::switchDates(Date& firstDate, Date& secondDate) {    
         Date tempDate = firstDate;
         firstDate = secondDate;
